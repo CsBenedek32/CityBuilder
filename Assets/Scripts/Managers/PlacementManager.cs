@@ -10,13 +10,13 @@ public class PlacementManager : MonoBehaviour
 {
     public int width, height;
     Grid placementGrid;
-    public int timeToBuild;
+    
     int numberOfStructures;
     private Dictionary<Vector3Int, StructureModel> temporaryRoadobjects = new Dictionary<Vector3Int, StructureModel>();
     private Dictionary<Vector3Int, StructureModel> structureAndRoadsDictionary = new Dictionary<Vector3Int, StructureModel>();
+    public float minTimeToBuild;
+    public float maxTimeToBuild;
 
-   
-  
     private void Start()
     {
         numberOfStructures = 0;
@@ -202,8 +202,9 @@ public class PlacementManager : MonoBehaviour
 
     internal IEnumerator PlayAnimation(Vector3Int p, GameObject prefab, CellType type)
     {
+        float randomTimeToBuild = UnityEngine.Random.Range(minTimeToBuild, maxTimeToBuild);
 
-        yield return new WaitForSeconds(timeToBuild);
+        yield return new WaitForSeconds(randomTimeToBuild);
         RemoveHouse(p);
         PlaceObjectOnTheMap(p, prefab, type);
     }

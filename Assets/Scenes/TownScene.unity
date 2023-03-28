@@ -1580,7 +1580,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: 30
   height: 30
-  timeToBuild: 5
+  minTimeToBuild: 1.5
+  maxTimeToBuild: 5.5
 --- !u!1 &899223842
 GameObject:
   m_ObjectHideFlags: 0
