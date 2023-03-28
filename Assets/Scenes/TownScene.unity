@@ -1580,6 +1580,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: 30
   height: 30
+  timeToBuild: 5
 --- !u!1 &899223842
 GameObject:
   m_ObjectHideFlags: 0
@@ -2475,6 +2476,9 @@ MonoBehaviour:
     weight: 1
   bigStructurePrefabs:
   - prefab: {fileID: 2315885335286750609, guid: dec092f7a8e04ce4a9b2a6eb1ff0cc4e, type: 3}
+    weight: 1
+  zoneColorPrefabs:
+  - prefab: {fileID: 3702253504043930072, guid: 7dab0340f70a176478a48bc77b3f6a5a, type: 3}
     weight: 1
   placementManager: {fileID: 802023218}
 --- !u!1 &1874407663

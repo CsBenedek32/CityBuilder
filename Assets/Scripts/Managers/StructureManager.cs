@@ -7,24 +7,30 @@ using UnityEngine.UIElements;
 
 public class StructureManager : MonoBehaviour
 {
-    public StructurePrefabWeighted[] housesPrefabs, specialPrefabs, bigStructurePrefabs;
+    public StructurePrefabWeighted[] housesPrefabs, specialPrefabs, bigStructurePrefabs, zoneColorPrefabs;
+    
     public PlacementManager placementManager;
 
-    private float[] houseWeights, specialWeights, bigStructureWeights;
+    private float[] houseWeights, specialWeights, bigStructureWeights, zoneColorWeights;
 
     private void Start()
     {
         houseWeights = housesPrefabs.Select(prefabStats => prefabStats.weight).ToArray();
         specialWeights = specialPrefabs.Select(prefabStats => prefabStats.weight).ToArray() ;
         bigStructureWeights = bigStructurePrefabs.Select(prefabStats => prefabStats.weight).ToArray();
+        zoneColorWeights = zoneColorPrefabs.Select(prefabStats => prefabStats.weight).ToArray();
     }
 
     public void PlaceHouse(Vector3Int p)
     {
         if (CheckPositionBeforePlacement(p))
         {
-            int randomIndex = GetRandomWeightIndex(houseWeights);
-            placementManager.PlaceObjectOnTheMap(p, housesPrefabs[randomIndex].prefab, CellType.Structure);
+            int randomIndex = GetRandomWeightIndex(zoneColorWeights);
+            int randomIndex2 = GetRandomWeightIndex(houseWeights);
+            placementManager.PlaceObjectOnTheMap(p, zoneColorPrefabs[randomIndex].prefab, CellType.Structure);
+            
+            StartCoroutine( placementManager.PlayAnimation(p, housesPrefabs[randomIndex2].prefab, CellType.Structure));
+            
         }
     }
 

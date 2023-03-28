@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -9,7 +10,7 @@ public class PlacementManager : MonoBehaviour
 {
     public int width, height;
     Grid placementGrid;
-
+    public int timeToBuild;
     int numberOfStructures;
     private Dictionary<Vector3Int, StructureModel> temporaryRoadobjects = new Dictionary<Vector3Int, StructureModel>();
     private Dictionary<Vector3Int, StructureModel> structureAndRoadsDictionary = new Dictionary<Vector3Int, StructureModel>();
@@ -199,7 +200,11 @@ public class PlacementManager : MonoBehaviour
         }
     }
 
-   
+    internal IEnumerator PlayAnimation(Vector3Int p, GameObject prefab, CellType type)
+    {
 
-    
+        yield return new WaitForSeconds(timeToBuild);
+        RemoveHouse(p);
+        PlaceObjectOnTheMap(p, prefab, type);
+    }
 }
